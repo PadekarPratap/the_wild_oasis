@@ -1,19 +1,18 @@
 import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
-import SideBar from "../components/SideBar";
+import Header from "../components/shared/Header";
+import Sidebar from "../components/shared/Sidebar";
 
 const AppLayout = () => {
   return (
-    <>
-      <Header />
-
-      <div className="flex">
-        <SideBar />
-        <main className="flex-grow border border-gray-200">
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-grow max-w-full">
+        <Header />
+        <main className="bg-colorBrand10 p-4 min-h-[calc(100vh-4rem)]">
           <Outlet />
         </main>
       </div>
-    </>
+    </div>
   );
 };
 export default AppLayout;

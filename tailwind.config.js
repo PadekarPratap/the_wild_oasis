@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        colorBrand10: "#f9fafb",
         colorBrand50: "#eef2ff",
         colorBrand100: "#e0e7ff",
         colorBrand200: "#c7d2fe",
@@ -15,6 +16,7 @@ export default {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        sono: ["Sono", "sans-serif"],
       },
     },
     screens: {
@@ -26,6 +28,6 @@ export default {
       xxl: "1700px",
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
   darkMode: "class",
 };
