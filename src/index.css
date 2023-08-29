@@ -22,7 +22,7 @@
   }
 
   .input-control {
-    @apply outline-none px-4 py-2 font-sono rounded-md text-xl font-semibold focus-within:ring-4 focus-within:ring-colorBrand500/20;
+    @apply outline-none px-4 py-2 font-sono rounded-md text-xl font-semibold focus-within:ring-4 focus-within:ring-colorBrand500/20 border border-gray-300;
   }
 
   .btn-primary {
@@ -46,6 +46,41 @@
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+
+  [data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: #c7d2fe;
+    padding: 3px 5px;
+    border-radius: 3px;
+    right: 40px;
+    top: 40px;
+    opacity: 0;
+    white-space: nowrap;
+  }
+
+  [data-tooltip]:hover::before {
+    opacity: 1;
+  }
+
+  /* responsive table  */
+  @media (max-width: 900px) {
+    .table-head {
+      display: none;
+    }
+
+    .data-cell {
+      display: grid;
+      grid-template-columns: 15ch auto;
+      gap: 0.25rem;
+      /* display: flex;
+      gap: 0.75rem; */
+    }
+    .data-cell::before {
+      content: attr(data-cell);
+      /* flex-basis: 5rem; */
     }
   }
 }

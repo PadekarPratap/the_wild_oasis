@@ -23,7 +23,8 @@ export const deleteCabin = async (id) => {
 };
 
 export const createCabin = async (newCabin) => {
-  const hasImagePath = newCabin.image?.startsWith(supabaseUrl);
+  // to check whether we are creating an entirely new cabin or duplicating an existing cabin
+  const hasImagePath = typeof newCabin.image === "string";
 
   let imageName;
   if (!hasImagePath) {
@@ -44,6 +45,7 @@ export const createCabin = async (newCabin) => {
     throw new Error("Unable to create a cabin.");
   }
 
+  // if we are duplicating an existing cabin, we don't need to upload the image
   if (hasImagePath) return data;
 
   // upload the cabin image in the bucket

@@ -5,9 +5,13 @@ import { useDeleteCabin } from "../hooks/cabins/useDeleteCabin";
 import { HiPencil, HiTrash } from "react-icons/hi2";
 import { FaCopy } from "react-icons/fa";
 import { useCreateCabin } from "../hooks/cabins/useCreateCabin";
+import Modal from "./shared/modal/Modal";
+import ConfirmDelete from "./shared/ConfirmDelete";
+import Table from "./shared/table/Table";
 
 const CabinRow = ({ cabin }) => {
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const {
     cabin_name,
@@ -36,34 +40,69 @@ const CabinRow = ({ cabin }) => {
 
   return (
     <>
-      <tr className="odd:bg-gray-50 even:bg-white">
-        <td className="p-3 font-medium text-gray-700">
-          <img className="w-44" src={image} alt={`${cabin_name} image`} />
-        </td>
-        <td className="p-3 font-medium text-gray-700">{cabin_name}</td>
-        <td className="p-3 font-medium text-gray-700">{max_capacity} guests</td>
-        <td className="p-3 font-medium text-gray-700">
+      <Table.Row>
+        <Table.DataCell data="Image :">
+          <img
+            className="max-w-[6rem] mx-auto"
+            src={image}
+            alt={`${cabin_name} image`}
+          />
+        </Table.DataCell>
+        <Table.DataCell data="Name :">{cabin_name}</Table.DataCell>
+        <Table.DataCell data="Capacity :">{max_capacity} guests</Table.DataCell>
+        <Table.DataCell data="price :">
           {formatCurrency(regular_price)}
-        </td>
-        <td className="p-3 font-medium text-green-500">
+        </Table.DataCell>
+        <Table.DataCell data="Discount :" color="text-green-500">
           {discount < 1 ? <span>&#x2015;</span> : formatCurrency(discount)}
-        </td>
-        <td className="p-3 font-medium text-gray-700">
-          <div>
-            <button disabled={isCreating} onClick={handleDuplicateCabin}>
+        </Table.DataCell>
+        <Table.DataCell data="# :">
+          <div className="flex  gap-1 items-center">
+            <button
+              data-tooltip="Copy Cabin"
+              className="p-2 hover:bg-colorBrand50 rounded relative"
+              disabled={isCreating}
+              onClick={handleDuplicateCabin}
+            >
               <FaCopy />
             </button>
-            <button onClick={() => setShowEditForm((prev) => !prev)}>
+            <button
+              data-tooltip="Edit Cabin"
+              className="p-2 hover:bg-colorBrand50 rounded relative"
+              onClick={() => setShowEditForm((prev) => !prev)}
+            >
               <HiPencil />
             </button>
-            <button disabled={isDeleting} onClick={() => deleteCabin(id)}>
+            <button
+              data-tooltip="Delete Cabin"
+              className="p-2 hover:bg-colorBrand50 rounded relative"
+              onClick={() => setShowDeleteModal((prev) => !prev)}
+            >
               <HiTrash />
             </button>
+            {showDeleteModal && (
+              <Modal onClose={() => setShowDeleteModal(false)}>
+                <ConfirmDelete
+                  title="Cabin"
+                  isDeleting={isDeleting}
+                  resourceName={cabin_name}
+                  onDelete={() => deleteCabin(id)}
+                  onClose={() => setShowDeleteModal(false)}
+                />
+              </Modal>
+            )}
           </div>
-        </td>
-      </tr>
+        </Table.DataCell>
+      </Table.Row>
 
-      {showEditForm && <CreateCabinForm cabinData={cabin} />}
+      {showEditForm && (
+        <Modal onClose={() => setShowEditForm(false)}>
+          <CreateCabinForm
+            cabinData={cabin}
+            onCloseModal={() => setShowEditForm(false)}
+          />
+        </Modal>
+      )}
     </>
   );
 };

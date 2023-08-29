@@ -5,7 +5,7 @@ import FormLoader from "./shared/FormLoader";
 import { useCreateCabin } from "../hooks/cabins/useCreateCabin";
 import { useUpdateCabin } from "../hooks/cabins/useUpdateCabin";
 
-const CreateCabinForm = ({ cabinData = {} }) => {
+const CreateCabinForm = ({ cabinData = {}, onCloseModal }) => {
   const {
     id: editId,
     cabin_name,
@@ -17,7 +17,7 @@ const CreateCabinForm = ({ cabinData = {} }) => {
   } = cabinData;
   const isEditSession = Boolean(editId);
 
-  const { register, handleSubmit, reset, formState, getValues } = useForm({
+  const { register, handleSubmit, formState, getValues } = useForm({
     defaultValues: isEditSession
       ? { cabin_name, max_capacity, regular_price, discount, description }
       : {},
@@ -32,7 +32,7 @@ const CreateCabinForm = ({ cabinData = {} }) => {
   const onSubmit = (data) => {
     if (!isEditSession) {
       createCabin(data, {
-        onSuccess: () => reset(),
+        onSuccess: () => onCloseModal?.(),
       });
     } else {
       const { regular_price, discount, max_capacity, description, cabin_name } =
@@ -45,12 +45,17 @@ const CreateCabinForm = ({ cabinData = {} }) => {
         cabin_name,
         image,
       };
-      updateCabin({ updatedCabin, id: editId });
+      updateCabin(
+        { updatedCabin, id: editId },
+        {
+          onSuccess: () => onCloseModal?.(),
+        }
+      );
     }
   };
 
   return (
-    <div className="my-8">
+    <div>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <FormControl label="Cabin Name" error={errors?.cabin_name?.message}>
           <input
@@ -120,7 +125,7 @@ const CreateCabinForm = ({ cabinData = {} }) => {
         {!isEditSession && (
           <FormControl label="Image" error={errors?.image?.message}>
             <input
-              className="input-control file:bg-colorBrand600 file:text-white file:border-none file:px-4 file:py-3 file:cursor-pointer file: file:rounded-lg focus-within:ring-0"
+              className="input-control file:bg-colorBrand600 file:text-white file:border-none file:px-4 file:py-3 file:cursor-pointer file: file:rounded-lg focus-within:ring-0 border-none"
               type="file"
               id="image_upload"
               {...register("image", {
@@ -134,6 +139,7 @@ const CreateCabinForm = ({ cabinData = {} }) => {
           <button
             className="btn-primary bg-gray-200 hover:bg-gray-300 text-gray-800 focus-within:ring-2 focus-within:ring-gray-600 focus-within:ring-offset-2"
             type="reset"
+            onClick={() => onCloseModal?.()} // close the modal only when the form is inside the modal and a onCloseModal prop is received.
           >
             Cancel
           </button>

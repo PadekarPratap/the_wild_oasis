@@ -1,9 +1,41 @@
-import { formatCurrency } from "../utils/helper";
+import { useSearchParams } from "react-router-dom";
+import AddCabinForm from "./AddCabinForm";
 import CabinRow from "./CabinRow";
 import ErrorMessage from "./shared/ErrorMessage";
 import Spinner from "./shared/Spinner";
+import Table from "./shared/table/Table";
 
 const CabinTable = ({ isLoading, isError, cabins, error }) => {
+  const [searchParams] = useSearchParams();
+
+  // 1) filteration of Data (client side)
+  const filteredValue = searchParams.get("discount") || "all";
+  let filteredCabins;
+  if (filteredValue === "all") filteredCabins = cabins;
+
+  if (filteredValue === "no-discount")
+    filteredCabins = cabins.filter((cabin) => cabin.discount === 0);
+
+  if (filteredValue === "with-discount")
+    filteredCabins = cabins.filter((cabin) => cabin.discount > 0);
+
+  // 2) Sorting of Data (client side)
+  const sortValue = searchParams.get("sortBy") || "created_at-asc";
+  const [value, sortStyle] = sortValue.split("-");
+  const modifier = sortStyle === "asc" ? 1 : -1;
+  const sortedCabins =
+    value === "cabin_name"
+      ? filteredCabins
+          ?.slice()
+          .sort((a, b) =>
+            modifier === 1
+              ? a[value].localeCompare(b[value])
+              : b[value].localeCompare(a[value])
+          )
+      : filteredCabins
+          ?.slice()
+          .sort((a, b) => (a[value] - b[value]) * modifier);
+
   return (
     <>
       {isLoading ? (
@@ -14,77 +46,29 @@ const CabinTable = ({ isLoading, isError, cabins, error }) => {
         <ErrorMessage message={error.message} />
       ) : (
         <>
-          <div className="hidden md:block shadow-lg rounded-lg overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-white border-b border-gray-300">
-                <tr>
-                  <th className="w-44 p-3 text-lg font-semibold text-left tracking-wide">
-                    Image
-                  </th>
-                  <th className="w-auto p-3 text-lg font-semibold text-left tracking-wide">
-                    Name
-                  </th>
-                  <th className="w-36 p-3 text-lg font-semibold text-left tracking-wide">
+          <div className="shadow-lg rounded-lg overflow-hidden">
+            <Table>
+              <Table.Head>
+                <Table.HeaderRow>
+                  <Table.HeaderCell width="w-[10%]">Image</Table.HeaderCell>
+                  <Table.HeaderCell width="w-[55%]">Name</Table.HeaderCell>
+                  <Table.HeaderCell width="w-[10%]">
                     Max Capacity
-                  </th>
-                  <th className="w-20 p-3 text-lg font-semibold text-left tracking-wide">
-                    Price
-                  </th>
-                  <th className="w-20 p-3 text-lg font-semibold text-left tracking-wide">
-                    Discount
-                  </th>
-                  <th className="w-10 p-3 text-lg font-semibold text-left tracking-wide"></th>
-                </tr>
-              </thead>
+                  </Table.HeaderCell>
+                  <Table.HeaderCell width="w-[10%]">Price</Table.HeaderCell>
+                  <Table.HeaderCell width="w-[10%]">Discount</Table.HeaderCell>
+                  <Table.HeaderCell width="w-[5%]"></Table.HeaderCell>
+                </Table.HeaderRow>
+              </Table.Head>
 
-              <tbody className="divide-y divide-gray-300">
-                {cabins?.map((cabin) => (
+              <Table.Body>
+                {sortedCabins?.map((cabin) => (
                   <CabinRow key={cabin.id} cabin={cabin} />
                 ))}
-              </tbody>
-            </table>
+              </Table.Body>
+            </Table>
           </div>
-
-          {/* mobile view  */}
-          <div className="grid grid-cols-1 md:hidden gap-4">
-            {cabins?.map((cabin) => (
-              <div className="bg-white rounded-md shadow p-4" key={cabin.id}>
-                <div className="flex flex-col xs:flex-row gap-4">
-                  <div className="basis-[40%]">
-                    <img
-                      className="w-full h-full object-cover object-center"
-                      src={cabin.image}
-                      alt={`${cabin.cabin_name} image`}
-                    />
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-bold tracking-wide">
-                      {cabin.cabin_name}
-                    </h2>
-                    <p>
-                      Max Capacity:{" "}
-                      <span className="font-bold font-sono">
-                        {cabin.max_capacity} guests
-                      </span>
-                    </p>
-                    <p>
-                      Price:{" "}
-                      <span className="font-sono font-semibold">
-                        {formatCurrency(cabin.regular_price)}
-                      </span>
-                    </p>
-                    <p>
-                      Discount:{" "}
-                      <span className="text-green-500 font-sono">
-                        {formatCurrency(cabin.discount)}
-                      </span>
-                    </p>
-                    <p></p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <AddCabinForm />
         </>
       )}
     </>
