@@ -46,7 +46,7 @@ const sortOptions = [
 ];
 
 const Cabins = () => {
-  const { isError, isLoading, cabins, error } = useCabins();
+  const { isError, isLoading, cabins, error, count } = useCabins();
   return (
     <div>
       <div className="flex lg:items-center lg:justify-between mb-12 flex-col lg:flex-row items-start gap-4 lg:gap-0">
@@ -66,6 +66,7 @@ const Cabins = () => {
         isLoading={isLoading}
         isError={isError}
         error={error}
+        count={count}
       />
     </div>
   );

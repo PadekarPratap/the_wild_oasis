@@ -11,7 +11,7 @@ const TableOperations = ({ fieldName, options }) => {
   };
 
   return (
-    <div className="flex bg-white px-2 py-1 rounded-md gap-1 border border-stone-400/30 shadow">
+    <div className="flex bg-white px-2 py-1 rounded-md gap-1 border border-stone-400/30 shadow flex-wrap">
       {options.map((option) => (
         <button
           key={option.value}

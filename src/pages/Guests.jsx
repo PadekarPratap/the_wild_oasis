@@ -30,7 +30,8 @@ const guestColumns = [
   },
 ];
 
-const customStyles = {
+// eslint-disable-next-line
+export const customStyles = {
   rows: {
     style: {
       minHeight: "72px", // override the row height

@@ -4,8 +4,9 @@ import CabinRow from "./CabinRow";
 import ErrorMessage from "./shared/ErrorMessage";
 import Spinner from "./shared/Spinner";
 import Table from "./shared/table/Table";
+import TablePagination from "./shared/TablePagination";
 
-const CabinTable = ({ isLoading, isError, cabins, error }) => {
+const CabinTable = ({ isLoading, isError, cabins, error, count }) => {
   const [searchParams] = useSearchParams();
 
   // 1) filteration of Data (client side)
@@ -67,6 +68,7 @@ const CabinTable = ({ isLoading, isError, cabins, error }) => {
                 ))}
               </Table.Body>
             </Table>
+            <TablePagination count={count} />
           </div>
           <AddCabinForm />
         </>

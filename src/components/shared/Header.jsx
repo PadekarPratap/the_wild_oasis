@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="h-16 sticky top-0 bg-white px-4 flex items-center border-b border-gray-300 justify-between md:justify-end shadow gap-4">
+      <div className="h-16 sticky top-0 bg-white px-4 flex items-center border-b border-gray-300 justify-between md:justify-end shadow gap-4 z-[99999]">
         <button onClick={() => setOpen((prev) => !prev)} className="md:hidden">
           <HiOutlineMenuAlt1 size={20} />
         </button>
@@ -27,13 +27,13 @@ const Header = () => {
       {open && (
         <div
           onClick={() => setOpen((prev) => !prev)}
-          className="fixed inset-0 duration-300 bg-black/25"
+          className="fixed inset-0 duration-300 z-[99999] bg-black/25"
         />
       )}
 
       {/* sidebar  */}
       <div
-        className={`fixed h-full  w-60 bg-white z-50 p-4 transition-all duration-500 top-0 ${
+        className={`fixed h-full  w-60 bg-white z-[99999] p-4 transition-all duration-500 top-0 ${
           open ? "left-0" : "-left-[200%]"
         }`}
       >

@@ -59,6 +59,7 @@
     top: 40px;
     opacity: 0;
     white-space: nowrap;
+    pointer-events: none;
   }
 
   [data-tooltip]:hover::before {

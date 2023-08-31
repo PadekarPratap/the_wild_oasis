@@ -11,6 +11,9 @@ import Bookings from "./pages/Bookings";
 import Settings from "./pages/Settings";
 import Guests from "./pages/Guests";
 import { Toaster } from "react-hot-toast";
+import Booking from "./pages/Booking";
+import Checkin from "./pages/Checkin";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -24,10 +27,14 @@ const App = () => {
             <Route path="/bookings" element={<Bookings />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/guests" element={<Guests />} />
+            <Route path="/booking/:bookingId" element={<Booking />} />
+            <Route path="/checkin/:bookingId" element={<Checkin />} />
           </Route>
+
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Toaster
-          position="top-right"
+          position="bottom-right"
           gutter={12}
           toastOptions={{
             success: {

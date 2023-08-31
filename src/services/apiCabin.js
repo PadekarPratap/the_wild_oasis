@@ -1,14 +1,21 @@
+import { PAGE_SIZE } from "../components/shared/TablePagination";
 import supabase, { supabaseUrl } from "./supabase";
 
-export const getCabins = async () => {
-  let { data, error } = await supabase.from("cabin").select("*");
+export const getCabins = async (page) => {
+  const from = (page - 1) * PAGE_SIZE;
+  const to = from + (PAGE_SIZE - 1);
+
+  let { data, error, count } = await supabase
+    .from("cabin")
+    .select("*", { count: "exact" })
+    .range(from, to);
 
   if (error) {
     console.log(error.message);
     throw new Error("There was an error loading the cabins");
   }
 
-  return data;
+  return { data, count };
 };
 
 export const deleteCabin = async (id) => {
