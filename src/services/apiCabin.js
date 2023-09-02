@@ -1,4 +1,4 @@
-import { PAGE_SIZE } from "../components/shared/TablePagination";
+import { PAGE_SIZE } from "../components/TablePagination";
 import supabase, { supabaseUrl } from "./supabase";
 
 export const getCabins = async (page) => {

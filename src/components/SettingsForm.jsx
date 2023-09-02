@@ -1,8 +1,8 @@
 import { useSettings } from "../hooks/settings/useSettings";
 import { useUpdateSettings } from "../hooks/settings/useUpdateSettings";
-import ErrorMessage from "./shared/ErrorMessage";
-import FormControl from "./shared/FormControl";
-import Spinner from "./shared/Spinner";
+import ErrorMessage from "./ErrorMessage";
+import FormControl from "./FormControl";
+import Spinner from "./Spinner";
 
 const SettingsForm = () => {
   const { isLoading, isError, error, settings = [{}] } = useSettings();

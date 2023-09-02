@@ -1,8 +1,8 @@
 import BookingsTable from "../components/BookingsTable";
-import ErrorMessage from "../components/shared/ErrorMessage";
-import Spinner from "../components/shared/Spinner";
-import TableOperations from "../components/shared/TableOperations";
-import TableSort from "../components/shared/TableSort";
+import ErrorMessage from "../components/ErrorMessage";
+import Spinner from "../components/Spinner";
+import TableOperations from "../components/TableOperations";
+import TableSort from "../components/TableSort";
 import { useBookings } from "../hooks/bookings/useBookings";
 
 const BookingOption = [
@@ -49,7 +49,7 @@ const Bookings = () => {
   return (
     <div>
       <div className="flex lg:items-center lg:justify-between flex-col lg:flex-row gap-5 lg:gap-0 items-start">
-        <h1 className="text-2xl md:text-4xl tracking-wide font-semibold">
+        <h1 className="text-2xl md:text-4xl tracking-wide font-semibold dark:text-white">
           Bookings
         </h1>
 

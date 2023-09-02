@@ -1,10 +1,10 @@
 import { useSearchParams } from "react-router-dom";
 import AddCabinForm from "./AddCabinForm";
 import CabinRow from "./CabinRow";
-import ErrorMessage from "./shared/ErrorMessage";
-import Spinner from "./shared/Spinner";
-import Table from "./shared/table/Table";
-import TablePagination from "./shared/TablePagination";
+import ErrorMessage from "./ErrorMessage";
+import Spinner from "./Spinner";
+import Table from "./Table";
+import TablePagination from "./TablePagination";
 
 const CabinTable = ({ isLoading, isError, cabins, error, count }) => {
   const [searchParams] = useSearchParams();
@@ -47,29 +47,39 @@ const CabinTable = ({ isLoading, isError, cabins, error, count }) => {
         <ErrorMessage message={error.message} />
       ) : (
         <>
-          <div className="shadow-lg rounded-lg overflow-hidden">
-            <Table>
-              <Table.Head>
-                <Table.HeaderRow>
-                  <Table.HeaderCell width="w-[10%]">Image</Table.HeaderCell>
-                  <Table.HeaderCell width="w-[55%]">Name</Table.HeaderCell>
-                  <Table.HeaderCell width="w-[10%]">
-                    Max Capacity
-                  </Table.HeaderCell>
-                  <Table.HeaderCell width="w-[10%]">Price</Table.HeaderCell>
-                  <Table.HeaderCell width="w-[10%]">Discount</Table.HeaderCell>
-                  <Table.HeaderCell width="w-[5%]"></Table.HeaderCell>
-                </Table.HeaderRow>
-              </Table.Head>
+          {sortedCabins?.length > 0 ? (
+            <div className="shadow-lg rounded-lg overflow-hidden dark:border-slate-300 dark:border">
+              <Table>
+                <Table.Head>
+                  <Table.HeaderRow>
+                    <Table.HeaderCell width="w-[10%]">Image</Table.HeaderCell>
+                    <Table.HeaderCell width="w-[55%]">Name</Table.HeaderCell>
+                    <Table.HeaderCell width="w-[10%]">
+                      Max Capacity
+                    </Table.HeaderCell>
+                    <Table.HeaderCell width="w-[10%]">Price</Table.HeaderCell>
+                    <Table.HeaderCell width="w-[10%]">
+                      Discount
+                    </Table.HeaderCell>
+                    <Table.HeaderCell width="w-[5%]"></Table.HeaderCell>
+                  </Table.HeaderRow>
+                </Table.Head>
 
-              <Table.Body>
-                {sortedCabins?.map((cabin) => (
-                  <CabinRow key={cabin.id} cabin={cabin} />
-                ))}
-              </Table.Body>
-            </Table>
-            <TablePagination count={count} />
-          </div>
+                <Table.Body>
+                  {sortedCabins?.map((cabin) => (
+                    <CabinRow key={cabin.id} cabin={cabin} />
+                  ))}
+                </Table.Body>
+              </Table>
+              <TablePagination count={count} />
+            </div>
+          ) : (
+            <div className="bg-white px-5 py-4 rounded-lg dark:bg-slate-700 dark:text-white">
+              <p className="text-xl text-center">
+                There are no records to display
+              </p>
+            </div>
+          )}
           <AddCabinForm />
         </>
       )}

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import Button from "../components/shared/Button";
-import FormControl from "../components/shared/FormControl";
-import Logo from "../components/shared/Logo";
+import Button from "../components/Button";
+import FormControl from "../components/FormControl";
+import Logo from "../components/Logo";
 import useLogin from "../hooks/auth/useLogin";
-import FormLoader from "./shared/FormLoader";
+import FormLoader from "./FormLoader";
+import { useQueryClient } from "@tanstack/react-query";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("pratap@gmail.com");
@@ -11,22 +12,32 @@ const LoginForm = () => {
 
   const { loggingIn, login } = useLogin();
 
+  const queryClient = useQueryClient();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email || !password) return;
 
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: (data) => {
+          console.log(data);
+          queryClient.setQueryData(["user"], data);
+        },
+      }
+    );
   };
 
   return (
-    <div className="bg-gray-100 min-w-full min-h-screen flex items-center justify-center">
+    <div className="bg-gray-100 min-w-full min-h-screen flex items-center justify-center dark:bg-slate-900">
       {/* content wrapper  */}
       <div className="space-y-5">
         <Logo />
-        <h1 className="text-center text-2xl font-bold text-gray-700">
+        <h1 className="text-center text-2xl font-bold text-gray-700 dark:text-gray-300">
           Log into your Account
         </h1>
-        <div className="bg-white px-5 py-7 rounded-lg">
+        <div className="bg-white px-5 py-7 rounded-lg dark:bg-slate-700">
           <form onSubmit={handleSubmit}>
             <FormControl label="Email">
               <input

@@ -1,8 +1,8 @@
 import DataTable from "react-data-table-component";
 import useGuests from "../hooks/guests/useGuests";
-import Spinner from "../components/shared/Spinner";
-import ErrorMessage from "../components/shared/ErrorMessage";
-import SearchFilter from "../components/shared/SearchFilter";
+import Spinner from "../components/Spinner";
+import ErrorMessage from "../components/ErrorMessage";
+import SearchFilter from "../components/SearchFilter";
 import { useState } from "react";
 
 const guestColumns = [
@@ -66,7 +66,7 @@ const Guests = () => {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl md:text-4xl tracking-wide font-semibold">
+        <h1 className="text-2xl md:text-4xl tracking-wide font-semibold dark:text-white">
           Guests
         </h1>
 

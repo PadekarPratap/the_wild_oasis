@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import FormControl from "./shared/FormControl";
+import FormControl from "./FormControl";
 import { formatCurrency } from "../utils/helper";
-import FormLoader from "./shared/FormLoader";
+import FormLoader from "./FormLoader";
 import { useCreateCabin } from "../hooks/cabins/useCreateCabin";
 import { useUpdateCabin } from "../hooks/cabins/useUpdateCabin";
 

@@ -4,7 +4,7 @@ import {
   BsFillArrowUpSquareFill,
 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import useCheckout from "../../hooks/bookings/useCheckout";
+import useCheckout from "../hooks/bookings/useCheckout";
 
 const BookingsTableOptions = ({ row }) => {
   const navigate = useNavigate();

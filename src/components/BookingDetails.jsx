@@ -8,14 +8,14 @@ import {
   formatDateInDetail,
   formatTimeInDetail,
 } from "../utils/helper";
-import Spinner from "./shared/Spinner";
+import Spinner from "./Spinner";
 import { BsCheck2Circle } from "react-icons/bs";
 import { AiOutlineDollarCircle } from "react-icons/ai";
-import Button from "./shared/Button";
-import ErrorMessage from "./shared/ErrorMessage";
+import Button from "./Button";
+import ErrorMessage from "./ErrorMessage";
 import { useState } from "react";
-import Modal from "./shared/modal/Modal";
-import ConfirmDelete from "./shared/ConfirmDelete";
+import Modal from "./Modal";
+import ConfirmDelete from "./ConfirmDelete";
 import useDeleteBooking from "../hooks/bookings/useDeleteBooking";
 
 const BookingDetails = () => {
@@ -69,7 +69,7 @@ const BookingDetails = () => {
         <div className="max-w-screen-xl mx-auto">
           <div className=" items-center flex justify-between">
             <div className="flex items-center flex-wrap gap-4">
-              <h1 className="text-2xl md:text-4xl tracking-wide font-semibold">
+              <h1 className="dark:text-white text-2xl md:text-4xl tracking-wide font-semibold">
                 Booking #{bookingId}
               </h1>
               <BookingStatus value={status} />
@@ -85,7 +85,7 @@ const BookingDetails = () => {
           </div>
 
           {/* main card  */}
-          <div className="mt-24 rounded-md overflow-hidden bg-white shadow-lg">
+          <div className="mt-24 rounded-md overflow-hidden bg-white shadow-lg dark:bg-slate-800 dark:text-white">
             {/* card header  */}
             <div className="flex flex-col items-center gap-7 md:gap-4 md:flex-row md:items-center md:justify-between bg-colorBrand500 text-white p-3">
               <h2 className="flex items-center gap-5 wrap text-xl md:text-2xl">
@@ -107,7 +107,7 @@ const BookingDetails = () => {
             {/* card body  */}
             <div className="mt-8 px-12 pb-8">
               <div className="text-lg md:text-xl font-medium text-[#6b7280] flex flex-wrap gap-5">
-                <span className="text-black">
+                <span className="text-black dark:text-white">
                   {name} + {guestsExcludingMainGuest}{" "}
                   {guestsExcludingMainGuest > 1 ? "guests" : "guest"}
                 </span>

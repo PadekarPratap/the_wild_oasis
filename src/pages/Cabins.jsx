@@ -1,6 +1,6 @@
 import CabinTable from "../components/CabinTable";
-import TableOperations from "../components/shared/TableOperations";
-import TableSort from "../components/shared/TableSort";
+import TableOperations from "../components/TableOperations";
+import TableSort from "../components/TableSort";
 import { useCabins } from "../hooks/cabins/useCabins";
 
 const filterOptions = [
@@ -50,7 +50,7 @@ const Cabins = () => {
   return (
     <div>
       <div className="flex lg:items-center lg:justify-between mb-12 flex-col lg:flex-row items-start gap-4 lg:gap-0">
-        <h1 className="text-2xl md:text-4xl tracking-wide font-semibold">
+        <h1 className="text-2xl md:text-4xl tracking-wide font-semibold dark:text-white">
           Cabins
         </h1>
         {/* <p>Filter / sort</p> */}

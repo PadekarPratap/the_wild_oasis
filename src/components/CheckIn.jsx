@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import BookingStatus from "./BookingStatus";
 import { useBooking } from "../hooks/bookings/useBooking";
-import Spinner from "./shared/Spinner";
+import Spinner from "./Spinner";
 import {
   TimeAgo,
   formatCurrency,
@@ -11,11 +11,11 @@ import {
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import { BsCheck2Circle } from "react-icons/bs";
 import { HiOutlineHomeModern } from "react-icons/hi2";
-import ErrorMessage from "./shared/ErrorMessage";
+import ErrorMessage from "./ErrorMessage";
 import { useEffect, useState } from "react";
-import Button from "./shared/Button";
+import Button from "./Button";
 import { useCheckin } from "../hooks/bookings/useCheckin";
-import FormLoader from "./shared/FormLoader";
+import FormLoader from "./FormLoader";
 import { useSettings } from "../hooks/settings/useSettings";
 
 const CheckIn = () => {
@@ -90,7 +90,7 @@ const CheckIn = () => {
           <div className="max-w-screen-xl mx-auto">
             <div className=" items-center flex justify-between">
               <div className="flex items-center flex-wrap gap-4">
-                <h1 className="text-2xl md:text-4xl tracking-wide font-semibold">
+                <h1 className="text-2xl md:text-4xl tracking-wide font-semibold dark:text-white">
                   Check In #{bookingId}
                 </h1>
                 <BookingStatus value={status} />
@@ -126,9 +126,9 @@ const CheckIn = () => {
             </div>
 
             {/* card body  */}
-            <div className="mt-8 px-12 pb-8">
+            <div className="pt-8 px-12 pb-8 dark:bg-slate-700 dark:text-white">
               <div className="text-lg md:text-xl font-medium text-[#6b7280] flex flex-wrap gap-5">
-                <span className="text-black">
+                <span className="text-black dark:text-white">
                   {name} + {guestsExcludingMainGuest}{" "}
                   {guestsExcludingMainGuest > 1 ? "guests" : "guest"}
                 </span>
@@ -176,7 +176,7 @@ const CheckIn = () => {
 
           {/* optional Breakfast box  */}
           {!hasBreakfast && (
-            <div className="mt-16 px-4 py-5 bg-white rounded-xl flex items-center gap-8">
+            <div className="mt-16 px-4 py-5 bg-white rounded-xl flex items-center gap-8 dark:bg-slate-700 dark:text-white">
               <input
                 type="checkbox"
                 id="breakfast"
@@ -198,7 +198,7 @@ const CheckIn = () => {
           )}
 
           {/* confirm box */}
-          <div className="mt-16 px-4 py-5 bg-white rounded-xl flex items-center gap-8">
+          <div className="mt-16 px-4 py-5 bg-white rounded-xl flex items-center gap-8 dark:bg-slate-700 dark:text-white">
             <input
               type="checkbox"
               id="confirm"

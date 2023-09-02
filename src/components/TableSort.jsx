@@ -10,7 +10,7 @@ const TableSort = ({ options }) => {
 
   return (
     <select
-      className="px-3 py-2 border border-stone-400/30 shadow rounded-md focus-within:outline-colorBrand500"
+      className="px-3 py-2 border border-stone-400/30 shadow rounded-md focus-within:outline-colorBrand500 dark:bg-slate-700 dark:text-white"
       onChange={handleChange}
     >
       {options.map((option) => (

@@ -2,7 +2,7 @@ const FormControl = ({ label, children, error }) => {
   return (
     <div className="mb-6 flex flex-col md:items-center md:flex-row gap-3 md:gap-5">
       <label
-        className="lg:basis-[20%] md:basis-[25%] text-xl tracking-wide"
+        className="lg:basis-[20%] md:basis-[25%] text-xl tracking-wide dark:text-white"
         htmlFor={children.props.id}
       >
         {label}

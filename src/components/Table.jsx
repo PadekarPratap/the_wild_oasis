@@ -4,7 +4,7 @@ const Table = ({ children }) => {
 
 const TableHead = ({ children }) => {
   return (
-    <thead className="bg-white border-b border-gray-300 table-head">
+    <thead className="bg-white dark:bg-slate-800 dark:text-white border-b border-gray-300 table-head">
       {children}
     </thead>
   );
@@ -15,7 +15,11 @@ const TableBody = ({ children }) => {
 };
 
 const TableRow = ({ children }) => {
-  return <tr className="odd:bg-gray-50 even:bg-white">{children}</tr>;
+  return (
+    <tr className="odd:bg-gray-50 dark:odd:bg-slate-700  dark:even:bg-slate-800  even:bg-white">
+      {children}
+    </tr>
+  );
 };
 
 // no styles for table header row
@@ -27,7 +31,7 @@ const TableDataCell = ({ children, color, data }) => {
   return (
     <td
       data-cell={data}
-      className={`p-3 font-medium text-gray-700 ${color} data-cell`}
+      className={`p-3 font-medium dark:text-white text-gray-700 ${color} data-cell`}
     >
       {children}
     </td>

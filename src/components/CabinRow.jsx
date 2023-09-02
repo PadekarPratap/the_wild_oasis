@@ -5,9 +5,9 @@ import { useDeleteCabin } from "../hooks/cabins/useDeleteCabin";
 import { HiPencil, HiTrash } from "react-icons/hi2";
 import { FaCopy } from "react-icons/fa";
 import { useCreateCabin } from "../hooks/cabins/useCreateCabin";
-import Modal from "./shared/modal/Modal";
-import ConfirmDelete from "./shared/ConfirmDelete";
-import Table from "./shared/table/Table";
+import Modal from "./Modal";
+import ConfirmDelete from "./ConfirmDelete";
+import Table from "./Table";
 
 const CabinRow = ({ cabin }) => {
   const [showEditForm, setShowEditForm] = useState(false);
@@ -60,7 +60,7 @@ const CabinRow = ({ cabin }) => {
           <div className="flex  gap-1 items-center">
             <button
               data-tooltip="Copy Cabin"
-              className="p-2 hover:bg-colorBrand50 rounded relative"
+              className="p-2 hover:bg-colorBrand50 rounded relative dark:text-colorBrand500 dark:hover:bg-slate-900"
               disabled={isCreating}
               onClick={handleDuplicateCabin}
             >
@@ -68,14 +68,14 @@ const CabinRow = ({ cabin }) => {
             </button>
             <button
               data-tooltip="Edit Cabin"
-              className="p-2 hover:bg-colorBrand50 rounded relative"
+              className="p-2 hover:bg-colorBrand50 rounded relative dark:text-colorBrand500 dark:hover:bg-slate-900"
               onClick={() => setShowEditForm((prev) => !prev)}
             >
               <HiPencil />
             </button>
             <button
               data-tooltip="Delete Cabin"
-              className="p-2 hover:bg-colorBrand50 rounded relative"
+              className="p-2 hover:bg-colorBrand50 rounded relative dark:text-colorBrand500 dark:hover:bg-slate-900"
               onClick={() => setShowDeleteModal((prev) => !prev)}
             >
               <HiTrash />

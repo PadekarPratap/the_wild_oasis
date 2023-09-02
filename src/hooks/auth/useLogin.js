@@ -10,7 +10,7 @@ const useLogin = () => {
     mutationFn: ({ email, password }) => loginApi(email, password),
     onSuccess: () => {
       toast.success("Login successfull");
-      navigate("/");
+      navigate("/", { replace: true });
     },
     onError: (err) => {
       toast.error(err.message);

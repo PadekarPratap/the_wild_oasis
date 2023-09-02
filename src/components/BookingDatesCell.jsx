@@ -1,4 +1,4 @@
-import { TimeAgo, formatDate } from "../../utils/helper";
+import { TimeAgo, formatDate } from "../utils/helper";
 
 const BookingDatesCell = ({ row }) => {
   return (

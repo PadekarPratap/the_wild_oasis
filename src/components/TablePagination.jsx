@@ -22,7 +22,7 @@ const TablePagination = ({ count }) => {
 
   return (
     <div className="flex items-center justify-between p-5">
-      <p>
+      <p className="dark:text-white">
         showing{" "}
         <span className="font-bold">{(currentPage - 1) * PAGE_SIZE + 1}</span>{" "}
         to{" "}
@@ -36,7 +36,7 @@ const TablePagination = ({ count }) => {
         <button
           disabled={currentPage === 1}
           onClick={previousPage}
-          className="disabled:opacity-50 disabled:cursor-not-allowed group inline-flex items-center gap-3 hover:bg-colorBrand500 hover:text-white px-4 py-2 rounded-lg"
+          className="disabled:opacity-50 disabled:cursor-not-allowed group inline-flex items-center gap-3 hover:bg-colorBrand500 hover:text-white px-4 py-2 rounded-lg dark:text-white"
         >
           <MdArrowBackIosNew className="group-hover:text-white" size={20} />{" "}
           <span>Previous</span>
@@ -45,7 +45,7 @@ const TablePagination = ({ count }) => {
         <button
           disabled={currentPage === pageCount}
           onClick={nextPage}
-          className="disabled:opacity-50 disabled:cursor-not-allowed group inline-flex items-center gap-3 hover:bg-colorBrand500 hover:text-white px-4 py-2 rounded-lg"
+          className="disabled:opacity-50 disabled:cursor-not-allowed group inline-flex items-center gap-3 hover:bg-colorBrand500 hover:text-white px-4 py-2 rounded-lg dark:text-white"
         >
           <span>Next</span>{" "}
           <MdOutlineNavigateNext className="group-hover:text-white" size={20} />

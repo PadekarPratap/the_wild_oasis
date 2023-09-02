@@ -1,12 +1,13 @@
 import DataTable from "react-data-table-component";
 // import BookingRow from "./BookingRow";
-// import Table from "./shared/table/Table";
-import BookingsGuestNameCell from "./cell/BookingsGuestNameCell";
-import BookingDatesCell from "./cell/BookingDatesCell";
+// import Table from "./Table";
+import BookingsGuestNameCell from "./BookingsGuestNameCell";
+import BookingDatesCell from "./BookingDatesCell";
 import BookingStatus from "./BookingStatus";
 import { formatCurrency } from "../utils/helper";
 import { customStyles } from "../pages/Guests";
-import BookingsTableOptions from "./cell/BookingsTableOptions";
+import BookingsTableOptions from "./BookingsTableOptions";
+// import { useTheme } from "../hooks/useTheme";
 
 const bookingColumns = [
   {
@@ -47,7 +48,8 @@ const bookingColumns = [
 ];
 
 const BookingsTable = ({ bookings }) => {
-  console.log(bookings);
+  // console.log(bookings);
+  // const { theme } = useTheme();
 
   return (
     <div className="shadow-lg rounded-lg overflow-hidden">
@@ -75,6 +77,7 @@ const BookingsTable = ({ bookings }) => {
         data={bookings}
         customStyles={customStyles}
         pagination
+        // theme={theme === "light" ? "default" : "dark"}
       />
     </div>
   );

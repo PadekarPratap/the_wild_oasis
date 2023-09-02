@@ -16,7 +16,7 @@ const Modal = ({ children, onClose }) => {
     // overlay
     <div
       onClick={onClose}
-      className="fixed inset-0 z-[9999] backdrop-blur-sm bg-slate-200/30"
+      className="fixed inset-0 z-[999999] backdrop-blur-sm bg-slate-200/30"
     >
       {/* modal wrapper  */}
       <div

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CreateCabinForm from "./CreateCabinForm";
-import Modal from "./shared/modal/Modal";
+import Modal from "./Modal";
 
 const AddCabinForm = () => {
   const [showForm, setShowForm] = useState(false);

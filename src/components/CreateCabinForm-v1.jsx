@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import FormControl from "./shared/FormControl";
+import FormControl from "./FormControl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCabin } from "../services/apiCabin";
 import { toast } from "react-hot-toast";
 import { formatCurrency } from "../utils/helper";
-import FormLoader from "./shared/FormLoader";
+import FormLoader from "./FormLoader";
 
 const CreateCabinForm = () => {
   const { register, handleSubmit, reset, formState, getValues } = useForm();

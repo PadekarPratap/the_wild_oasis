@@ -1,7 +1,7 @@
 // currently muted due to the use of react data table component
 import { TimeAgo, formatCurrency, formatDate } from "../utils/helper";
 import BookingStatus from "./BookingStatus";
-import Table from "./shared/table/Table";
+import Table from "./Table";
 
 const BookingRow = ({ booking }) => {
   console.log(booking);
