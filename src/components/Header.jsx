@@ -36,7 +36,7 @@ const Header = () => {
 
       {/* sidebar  */}
       <div
-        className={`fixed h-full  w-60 bg-white z-[99999] p-4 transition-all duration-500 top-0 ${
+        className={`fixed h-full  w-60 bg-white z-[99999] p-4 transition-all duration-500 top-0 dark:bg-slate-800 dark:text-white ${
           open ? "left-0" : "-left-[200%]"
         }`}
       >
@@ -47,7 +47,7 @@ const Header = () => {
             {links.map((link) => (
               <li key={link.id}>
                 <NavLink
-                  className="flex hover:bg-colorBrand50 px-4 py-3 rounded-lg items-center gap-4"
+                  className="flex hover:bg-colorBrand50 px-4 py-3 rounded-lg items-center gap-4 dark:hover:bg-slate-900"
                   to={link.link}
                   onClick={() => setOpen((prev) => !prev)}
                 >

@@ -1,3 +1,4 @@
+import { getToday } from "../utils/helper";
 import supabase from "./supabase";
 
 export const getBookings = async ({ filter, sort }) => {
@@ -64,6 +65,34 @@ export const deleteBooking = async (bookingId) => {
   if (error) {
     console.log(error.message);
     throw new Error("The Booking could not be deleted");
+  }
+
+  return data;
+};
+
+export const getBookingsAfterDate = async (date) => {
+  const { error, data: bookingsAfterDate } = await supabase
+    .from("booking")
+    .select("*")
+    .gte("created_at", date)
+    .lte("created_at", getToday({ end: true }));
+
+  if (error) {
+    throw new Error("There was an error loading the bookings");
+  }
+
+  return bookingsAfterDate;
+};
+
+export const getStaysAfterDate = async (date) => {
+  const { error, data } = await supabase
+    .from("booking")
+    .select("*, guest(name)")
+    .gte("created_at", date)
+    .lte("created_at", getToday({ end: true }));
+
+  if (error) {
+    throw new Error("There was an error loading the stays");
   }
 
   return data;

@@ -49,7 +49,6 @@ const bookingColumns = [
 
 const BookingsTable = ({ bookings }) => {
   // console.log(bookings);
-  // const { theme } = useTheme();
 
   return (
     <div className="shadow-lg rounded-lg overflow-hidden">
@@ -77,7 +76,6 @@ const BookingsTable = ({ bookings }) => {
         data={bookings}
         customStyles={customStyles}
         pagination
-        // theme={theme === "light" ? "default" : "dark"}
       />
     </div>
   );

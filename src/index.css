@@ -87,7 +87,7 @@
 }
 
 html.dark a.active {
-  @apply bg-slate-800 text-white;
+  @apply bg-slate-900 text-white;
 }
 
 a.active {

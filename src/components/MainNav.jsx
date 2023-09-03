@@ -53,7 +53,7 @@ const MainNav = () => {
           <li key={link.id} className="text-xl font-medium tracking-wide">
             <NavLink
               to={link.link}
-              className="w-full hover:bg-colorBrand100 text-gray-600 hover:text-gray-800 flex items-center gap-3 px-4 py-3 rounded-lg dark:text-white dark:hover:bg-slate-800"
+              className="w-full hover:bg-colorBrand100 text-gray-600 hover:text-gray-800 flex items-center gap-3 px-4 py-3 rounded-lg dark:text-white dark:hover:bg-slate-900"
             >
               {link.icon}
               <span>{link.name}</span>

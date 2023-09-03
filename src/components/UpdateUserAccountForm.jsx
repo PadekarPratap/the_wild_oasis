@@ -79,16 +79,7 @@ const UpdateUserAccountForm = () => {
 
           {/* update password  */}
           <div className="mt-8">
-            <h3 className="text-xl md:text-3xl tracking-wide font-semibold mb-4 dark:text-white">
-              Update Password
-            </h3>
-            <p className="text text-gray-500">
-              Change your password to keep your account secure.
-            </p>
-            <hr className="my-3" />
-
             {/* update password form  */}
-
             <UpdatePasswordForm />
           </div>
         </>
